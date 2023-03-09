@@ -40,5 +40,4 @@ export class UserEntity {
   @OneToMany(() => OrdersEntity, order => order.user)
   orders?: OrdersEntity[];
 
-
 }
