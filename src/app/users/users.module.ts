@@ -12,6 +12,7 @@ import { CategoryEntity } from "../categories/entities/category.entity";
 import { ProductsEntity } from "../products/entities/products.entity";
 import { RatingEntity } from "../rating/entities/rating.entity";
 
+
 @Module({
   providers: [UsersService],
   controllers: [UsersController],

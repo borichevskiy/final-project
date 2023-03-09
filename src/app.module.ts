@@ -21,15 +21,6 @@ import { RatingEntity } from "./app/rating/entities/rating.entity";
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: process.env.POSTGRES_HOST,
-        port: Number(process.env.POSTGRES_PORT),
-        username: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DB,
-        entities: [UserEntity, CartEntity, BrandEntity, UserRoleEntity, OrdersEntity, UserInfoEntity, CategoryEntity, ProductsEntity, RatingEntity],
-        autoLoadEntities: true,
-        synchronize: true
       }),
     }),
     UsersModule,
