@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from "@nestjs/typeorm";
+
+// ============ App ================
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
-import { TypeOrmModule } from "@nestjs/typeorm";
+
 import { UserEntity } from "./entities/users.entity";
 import { CartEntity } from "../cart/entities/cart.entity";
 import { BrandEntity } from "../brand/entities/brand.entity";
@@ -16,6 +19,18 @@ import { RatingEntity } from "../rating/entities/rating.entity";
 @Module({
   providers: [UsersService],
   controllers: [UsersController],
-  imports: [TypeOrmModule.forFeature([UserEntity, CartEntity, BrandEntity, UserRoleEntity, OrdersEntity, UserInfoEntity, CategoryEntity, ProductsEntity, RatingEntity])]
+  imports: [
+    TypeOrmModule.forFeature([
+      UserEntity, 
+      CartEntity, 
+      BrandEntity, 
+      UserRoleEntity, 
+      OrdersEntity, 
+      UserInfoEntity, 
+      CategoryEntity, 
+      ProductsEntity, 
+      RatingEntity
+    ])
+  ]
 })
 export class UsersModule {}
