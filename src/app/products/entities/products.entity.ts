@@ -1,16 +1,14 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn
 } from "typeorm";
+
 import { CartEntity } from "../../cart/entities/cart.entity";
 import { OrdersEntity } from "../../orders/entities/orders.entity";
-import { UserRoleEntity } from "../../roles/entities/user-role.entity";
 import { CategoryEntity } from "../../categories/entities/category.entity";
 import { BrandEntity } from "../../brand/entities/brand.entity";
 import { RatingEntity } from "../../rating/entities/rating.entity";
