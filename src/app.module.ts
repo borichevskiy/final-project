@@ -4,7 +4,14 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 
 // ============ App ================
 import { UsersModule } from './app/users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './app/auth/auth.module';
+import { RolesModule } from './app/roles/roles.module';
+import { RatingModule } from './app/rating/rating.module';
+import { ProductsModule } from './app/products/products.module';
+import { OrdersModule } from './app/orders/orders.module';
+import { CategoriesModule } from './app/categories/categories.module';
+import { CartModule } from './app/cart/cart.module';
+import { BrandModule } from './app/brand/brand.module';
 
 @Module({
   imports: [
@@ -17,7 +24,14 @@ import { AuthModule } from './auth/auth.module';
       useFactory: (configService: ConfigService) => ({}),
     }),
     UsersModule,
-    AuthModule,
+    RolesModule,
+    RatingModule,
+    ProductsModule,
+    OrdersModule,
+    CategoriesModule,
+    CartModule,
+    BrandModule,
+    AuthModule
   ],
   controllers: [],
   providers: [],
