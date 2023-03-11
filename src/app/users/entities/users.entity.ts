@@ -4,11 +4,13 @@ import { UserRoleEntity } from "../../roles/entities/user-role.entity";
 import { CartEntity } from "../../cart/entities/cart.entity";
 import { OrdersEntity } from "../../orders/entities/orders.entity";
 import { RatingEntity } from "../../rating/entities/rating.entity";
+import { UUIDEntity } from "src/shared/entities/uuid.entity";
+import { UserRoleTypes } from "src/app/roles/enums/user-role-types.enum";
 
 @Entity('users')
-export class UserEntity {
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
+export class UserEntity extends UUIDEntity {
+  // @PrimaryGeneratedColumn({type: "bigint"})
+  // id: number;
 
   @Column()
   email: string;
@@ -16,14 +18,21 @@ export class UserEntity {
   @Column()
   password: string;
 
-  @Column()
-  createdAt: Date;
-
   @Column({default: false})
   banned: boolean;
 
   @Column({default: ''})
   banReason: string;
+
+  @Column({ name: "role_type" })
+  roleType!: UserRoleTypes;
+
+  @Column({ name: "role_id" })
+  roleId!: number;
+
+  @ManyToOne(() => UserRoleEntity)
+  @JoinColumn({ name: "role_id", referencedColumnName: "id" })
+  userRole?: UserRoleEntity;
 
   @OneToOne(() => UserInfoEntity)
   @JoinColumn()
@@ -33,11 +42,6 @@ export class UserEntity {
   @JoinColumn()
   cart: CartEntity;
 
-
-  @ManyToOne(() => UserRoleEntity)
-  userRole?: UserRoleEntity;
-
   @OneToMany(() => OrdersEntity, order => order.user)
   orders?: OrdersEntity[];
-
 }

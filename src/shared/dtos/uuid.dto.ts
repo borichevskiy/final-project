@@ -3,5 +3,5 @@ export abstract class UUIDDto {
 
   created!: number;
 
-  update!: number;
+  updated!: number;
 }
