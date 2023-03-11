@@ -1,4 +1,5 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import * as bcrypt from 'bcrypt';
 import { UserInfoEntity } from "./user-info.entity";
 import { UserRoleEntity } from "../../roles/entities/user-role.entity";
 import { CartEntity } from "../../cart/entities/cart.entity";
@@ -15,6 +16,9 @@ export class UserEntity {
 
   @Column()
   password: string;
+
+  @Column({ select: false, nullable: true, name: 'refresh_token' })
+  refreshToken: string;
 
   @Column()
   createdAt: Date;
@@ -39,5 +43,12 @@ export class UserEntity {
 
   @OneToMany(() => OrdersEntity, order => order.user)
   orders?: OrdersEntity[];
+
+  @BeforeInsert()
+  async hashPassword() {
+    if (this.password) {
+      this.password = await bcrypt.hash(this.password, 10);
+    }
+  }
 
 }
