@@ -7,7 +7,6 @@ import { RolesController } from './roles.controller';
 import { RolesRepo } from './repos/roles.repo';
 import { UserRoleEntity } from './entities/user-role.entity';
 
-
 @Module({
   providers: [RolesService,RolesRepo],
   controllers: [RolesController],
