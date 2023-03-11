@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 // ============ App ================
 import { RolesService } from './roles.service';
 import { RolesController } from './roles.controller';
+import { UserRoleEntity } from "./entities/user-role.entity";
 
 
 
@@ -12,7 +13,7 @@ import { RolesController } from './roles.controller';
   controllers: [RolesController],
   imports: [
     TypeOrmModule.forFeature([
-
+        UserRoleEntity
     ])
   ]
 })
