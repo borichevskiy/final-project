@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 // ============ App ================
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
+import { UsersRepo } from './repos/users.repo';
 
 import { UserEntity } from "./entities/users.entity";
 import { CartEntity } from "../cart/entities/cart.entity";
@@ -14,10 +15,11 @@ import { UserInfoEntity } from "./entities/user-info.entity";
 import { CategoryEntity } from "../categories/entities/category.entity";
 import { ProductsEntity } from "../products/entities/products.entity";
 import { RatingEntity } from "../rating/entities/rating.entity";
+import { SecurityModule } from '../security/security.module';
 
 
 @Module({
-  providers: [UsersService],
+  providers: [UsersService, UsersRepo],
   controllers: [UsersController],
   imports: [
     TypeOrmModule.forFeature([
@@ -30,7 +32,8 @@ import { RatingEntity } from "../rating/entities/rating.entity";
       CategoryEntity, 
       ProductsEntity, 
       RatingEntity
-    ])
+    ]),
+    SecurityModule
   ]
 })
 export class UsersModule {}

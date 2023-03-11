@@ -23,7 +23,6 @@ export class UserRoleEntity extends IDEntity {
   permissions: UserPermissions[]
 
   @OneToMany(() => UserEntity, user => user.userRole)
+  @JoinColumn({ name: "id", referencedColumnName: "role_id" })
   users?: UserEntity[];
-
-
 }
