@@ -22,14 +22,7 @@ import { RatingEntity } from "../rating/entities/rating.entity";
   imports: [
     TypeOrmModule.forFeature([
       UserEntity, 
-      CartEntity, 
-      BrandEntity, 
-      UserRoleEntity, 
-      OrdersEntity, 
-      UserInfoEntity, 
-      CategoryEntity, 
-      ProductsEntity, 
-      RatingEntity
+      UserInfoEntity
     ])
   ]
 })

@@ -12,17 +12,15 @@ import { OrdersModule } from './app/orders/orders.module';
 import { CategoriesModule } from './app/categories/categories.module';
 import { CartModule } from './app/cart/cart.module';
 import { BrandModule } from './app/brand/brand.module';
+import { dataSourceOptions } from "./config/typeOrm.config";
+
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`
+      envFilePath: '.development.env',
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({}),
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     UsersModule,
     RolesModule,
     RatingModule,

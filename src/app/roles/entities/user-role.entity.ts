@@ -9,9 +9,7 @@ import { UserEntity } from "../../users/entities/users.entity";
 import { OrdersEntity } from "../../orders/entities/orders.entity";
 
 @Entity({ name: "user_roles" })
-export class UserRoleEntity extends IDEntity {
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
+export class UserRoleEntity extends IDEntity{
 
   @Column({ name: "type", enum: UserRoleTypes })
   type: UserRoleTypes;
