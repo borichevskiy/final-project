@@ -5,13 +5,12 @@ import { JwtService } from '@nestjs/jwt';
 import { RoleDto } from 'src/app/roles/dtos/role.dto';
 
 import { UserPermissions } from 'src/app/roles/enums/user-permissions.enum';
-// import { UserDto } from 'src/app/users/dtos/user.dto';
-import { PERMISSION_KEY } from '../decorators/permissions.decorator';
-import { UserSessionDto } from '../dtos/userSession.dto';
 import { UserDto } from 'src/app/users/dtos/user.dto';
 import { AuthService } from '../auth.service';
 import { UsersService } from 'src/app/users/users.service';
 import { RolesRepo } from 'src/app/roles/repos/roles.repo';
+import { PERMISSION_KEY } from '../decorators/permissions.decorator';
+import { UserSessionDto } from '../dtos/userSession.dto';
 
 @Injectable()
 export class JwtPermissionsGuard implements CanActivate {
