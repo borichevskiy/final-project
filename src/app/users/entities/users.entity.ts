@@ -8,15 +8,18 @@ import { UUIDEntity } from "src/shared/entities/uuid.entity";
 import { UserRoleTypes } from "src/app/roles/enums/user-role-types.enum";
 
 @Entity('users')
-export class UserEntity extends UUIDEntity {
-  // @PrimaryGeneratedColumn({type: "bigint"})
-  // id: number;
+export class UserEntity {
+  @PrimaryGeneratedColumn({type: "bigint"})
+  id: string;
 
   @Column()
   email: string;
 
   @Column()
   password: string;
+
+  @Column({ select: false, nullable: true, name: 'refresh_token' })
+  refreshToken: string;
 
   @Column({default: false})
   banned: boolean;
