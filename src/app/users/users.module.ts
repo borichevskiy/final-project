@@ -19,6 +19,7 @@ import { SecurityModule } from '../security/security.module';
 
 
 @Module({
+  exports:[UsersService, UsersRepo],
   providers: [UsersService, UsersRepo],
   controllers: [UsersController],
   imports: [
