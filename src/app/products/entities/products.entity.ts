@@ -21,6 +21,9 @@ export class ProductsEntity {
   @Column({name: 'name'})
   name: string;
 
+  @Column({default: ''})
+  image: string
+
   @Column({name: 'price'})
   price: number;
 

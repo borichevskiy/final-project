@@ -5,10 +5,11 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { CartController } from './cart.controller';
 import { CartService } from './cart.service';
 import { CartEntity } from "./entities/cart.entity";
+import { CartRepo } from "./repos/cart.repo";
 
 
 @Module({
-  providers: [CartService],
+  providers: [CartService, CartRepo],
   controllers: [CartController],
   imports: [
     TypeOrmModule.forFeature([
