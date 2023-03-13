@@ -1,9 +1,4 @@
-import { IsArray, IsNumber, IsString, IsUUID } from "class-validator";
-import { UserEntity } from "src/app/users/entities/users.entity";
-
-// ============ enums ===============
-import { UserPermissions } from "../../roles/enums/user-permissions.enum";
-import { UserRoleTypes } from "../../roles/enums/user-role-types.enum";
+import { IsNumber, IsString, IsUUID } from "class-validator";
 
 
 export class UserSessionDto {
