@@ -5,15 +5,12 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { BrandController } from './brand.controller';
 import { BrandService } from './brand.service';
 import { BrandEntity } from "./entities/brand.entity";
+import { BrandRepo } from './repos/brand.repo';
 
 
 @Module({
-  providers: [BrandService],
+  providers: [BrandService, BrandRepo],
   controllers: [BrandController],
-  imports: [
-    TypeOrmModule.forFeature([
-      BrandEntity
-    ])
-  ]
+  imports: [TypeOrmModule.forFeature([BrandEntity])],
 })
 export class BrandModule {}

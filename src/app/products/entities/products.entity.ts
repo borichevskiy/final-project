@@ -21,9 +21,6 @@ export class ProductsEntity {
   @Column({name: 'name'})
   name: string;
 
-  @Column({default: ''})
-  image: string
-
   @Column({name: 'price'})
   price: number;
 
@@ -36,10 +33,8 @@ export class ProductsEntity {
   @ManyToMany(() => CartEntity, (cart) => cart.products)
   cart: CartEntity[];
 
-
   @ManyToMany(() => OrdersEntity, (order) => order.products)
   orders: OrdersEntity[];
-
 
   @ManyToOne(() => ProductsEntity)
   category?: CategoryEntity;
@@ -49,8 +44,4 @@ export class ProductsEntity {
 
   @OneToMany(() => RatingEntity, rating => rating.product)
   ratings?: RatingEntity[];
-
-
-
-
 }

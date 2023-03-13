@@ -20,7 +20,7 @@ export const dataSourceOptions: DataSourceOptions = {
   host: 'localhost',
   port: 5432,
   username: 'postgres',
-  password: 'postgres',
+  password: 'regina',
   database: 'final_db',
   synchronize: false,
   installExtensions: true,
