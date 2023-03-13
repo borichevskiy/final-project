@@ -13,11 +13,11 @@ import {
   LoginDto,
   PostLoginResponse,
 } from './dtos/login.dto';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import JwtRefreshGuard from './guards/jwt-refresh.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { PayloadToken } from './models/token.model';
 import { AuthService } from './auth.service';
+import { JwtPermissionsGuard } from './guards/jwt-permissions.guard';
 
 type AuthorizedRequest = Express.Request & {
   headers: { authorization: string };
@@ -41,7 +41,7 @@ export class AuthController {
 
   @ApiResponse({ status: 200 })
   @ApiBearerAuth('access-token')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtPermissionsGuard)
   @Get('logout')
   async logOut(@Request() req: { user: PayloadToken }) {
     await this.authService.logout(req.user);

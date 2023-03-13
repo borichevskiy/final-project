@@ -32,7 +32,6 @@ export class UsersService {
     const createdUser = this.userRepository.create(registrationDto);
     const saveUser = await this.userRepository.save(createdUser);
     delete saveUser.password;
-    delete saveUser.refreshToken;
     return saveUser;
   }
 
@@ -84,7 +83,7 @@ export class UsersService {
     return this.userRepository.remove(user);
   }
 
-  async setCurrentRefreshToken(refreshToken: string, userId: number) {
+  async setCurrentRefreshToken(refreshToken: string, userId: string) {
     //crypto is a node module, and bcrypt the maximum length of the hash is 60 characters, and token is longer than that, so we need to hash it
     const hash = createHash('sha256').update(refreshToken).digest('hex');
 
@@ -107,7 +106,7 @@ export class UsersService {
 
   async getUserIfRefreshTokenMatches(refreshToken: string, userId: string) {
     const user = await this.userRepository.findOne({
-      select: ['id', 'refreshToken', 'userRole'],
+      select: ['id', 'refreshToken'],
       where: { id: userId },
     });
 

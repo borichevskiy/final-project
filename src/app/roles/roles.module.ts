@@ -8,7 +8,7 @@ import { RolesRepo } from './repos/roles.repo';
 import { UserRoleEntity } from './entities/user-role.entity';
 
 @Module({
-  providers: [RolesService,RolesRepo],
+  providers: [RolesService, RolesRepo],
   controllers: [RolesController],
   imports: [
     TypeOrmModule.forFeature([

@@ -8,14 +8,18 @@ import { UserPermissions } from 'src/app/roles/enums/user-permissions.enum';
 // import { UserDto } from 'src/app/users/dtos/user.dto';
 import { PERMISSION_KEY } from '../decorators/permissions.decorator';
 import { UserSessionDto } from '../dtos/userSession.dto';
-import { SecurityService } from '../security.service';
+import { UserDto } from 'src/app/users/dtos/user.dto';
+import { AuthService } from '../auth.service';
+import { UsersService } from 'src/app/users/users.service';
+import { RolesRepo } from 'src/app/roles/repos/roles.repo';
 
 @Injectable()
 export class JwtPermissionsGuard implements CanActivate {
   constructor(
     private readonly jwtService: JwtService,
     private readonly reflector: Reflector,
-    private readonly securityService: SecurityService
+    private readonly securityService: UsersService,
+    private readonly rolesRepository: RolesRepo,
   ) {}
 
   async canActivate(context: ExecutionContext) {
@@ -43,7 +47,7 @@ export class JwtPermissionsGuard implements CanActivate {
 
       const decodedUser = UserSessionDto.fromPayload(this.jwtService.verify(token));
 
-      const userEntity = await this.securityService.getUserById(decodedUser.id)
+      const userEntity = await this.securityService.findById(decodedUser.id)
       if (!userEntity) {
         throw new HttpException({message: "User unauthorized"}, HttpStatus.UNAUTHORIZED);
       }
@@ -55,7 +59,7 @@ export class JwtPermissionsGuard implements CanActivate {
       }
       req.user = decodedUser;
 
-      const roleEntity = await this.securityService.getRoleById(decodedUser.roleId);
+      const roleEntity = await this.rolesRepository.getRoleById(decodedUser.roleId);
       if (!roleEntity) {
         throw new HttpException({message: "User unauthorized"}, HttpStatus.UNAUTHORIZED);
       }

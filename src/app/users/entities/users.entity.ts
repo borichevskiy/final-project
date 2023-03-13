@@ -8,7 +8,7 @@ import { UUIDEntity } from "src/shared/entities/uuid.entity";
 import { UserRoleTypes } from "src/app/roles/enums/user-role-types.enum";
 
 @Entity('users')
-export class UserEntity {
+export class UserEntity extends UUIDEntity {
   @PrimaryGeneratedColumn({type: "bigint"})
   id: string;
 

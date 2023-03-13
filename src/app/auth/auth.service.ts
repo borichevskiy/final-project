@@ -5,6 +5,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserRoleEntity } from '../roles/entities/user-role.entity';
+import { RolesRepo } from '../roles/repos/roles.repo';
+import { UsersRepo } from '../users/repos/users.repo';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { PayloadToken } from './models/token.model';
@@ -14,15 +16,15 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
-    // @Inject(config.KEY)
-    // private configService: ConfigType<typeof config>,
+    private readonly rolesRepository: RolesRepo,
   ) {}
+
+
 
   async validateUser(email: string, password: string) {
     const user: {
       password: string;
-      id: number;
-      userRole?: UserRoleEntity;
+      id: string;
     } = await this.usersService.findByEmailAndGetPassword(email);
 
     if (user) {
@@ -37,6 +39,9 @@ export class AuthService {
     return null;
   }
 
+
+  
+
   async login(user: PayloadToken) {
     const { accessToken } = this.jwtToken(user);
     const refreshToken = this.jwtRefreshToken(user);
@@ -49,7 +54,7 @@ export class AuthService {
   }
 
   jwtToken(user: PayloadToken) {
-    const payload: PayloadToken = { email: user.email, id: user.id };
+    const payload: PayloadToken = { email: user.email, id: user.id, roleId: user.roleId };
     return {
       accessToken: this.jwtService.sign(payload),
     };
@@ -73,4 +78,6 @@ export class AuthService {
   async createAccessTokenFromRefreshToken(user: PayloadToken) {
     return this.jwtToken(user);
   }
+
+
 }

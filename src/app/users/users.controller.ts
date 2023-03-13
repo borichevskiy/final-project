@@ -15,8 +15,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Public } from '../auth/decorators/public.decorator';
-import { Roles } from '../auth/decorators/roles.decorator';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { JwtPermissionsGuard } from '../auth/guards/jwt-permissions.guard';
 import {
   RegistrationDto,
   DefaultColumnsResponse,
@@ -26,7 +25,7 @@ import { UsersService } from './users.service';
 
 @ApiTags('users') // put the name of the controller in swagger
 @Controller('users')
-@UseGuards(JwtAuthGuard) //  makes the all routs as private by default
+@UseGuards(JwtPermissionsGuard) //  makes the all routs as private by default
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

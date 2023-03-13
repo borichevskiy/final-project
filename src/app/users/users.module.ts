@@ -15,11 +15,13 @@ import { UserInfoEntity } from "./entities/user-info.entity";
 import { CategoryEntity } from "../categories/entities/category.entity";
 import { ProductsEntity } from "../products/entities/products.entity";
 import { RatingEntity } from "../rating/entities/rating.entity";
-import { SecurityModule } from '../security/security.module';
+import { AuthModule } from '../auth/auth.module';
+import { RolesModule } from '../roles/roles.module';
+import { RolesRepo } from '../roles/repos/roles.repo';
 
 
 @Module({
-  providers: [UsersService, UsersRepo],
+  providers: [UsersService, UsersRepo, RolesRepo],
   controllers: [UsersController],
   imports: [
     TypeOrmModule.forFeature([
@@ -34,7 +36,9 @@ import { SecurityModule } from '../security/security.module';
       ProductsEntity, 
       RatingEntity
     ]),
-    SecurityModule
+    AuthModule,
+    RolesModule
+    
   ]
 })
 export class UsersModule {}
