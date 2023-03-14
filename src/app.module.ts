@@ -35,9 +35,9 @@ import { AcceptLanguageResolver, I18nModule, QueryResolver } from "nestjs-i18n";
     ConfigModule.forRoot({
       envFilePath: '.development.env',
     }),
-    ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, 'static')
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: path.resolve(__dirname, 'static')
+    // }),
     TypeOrmModule.forRoot(dataSourceOptions),
     UsersModule,
     RolesModule,
