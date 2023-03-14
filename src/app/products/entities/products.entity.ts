@@ -29,6 +29,9 @@ export class ProductsEntity extends UUIDEntity{
   @Column({name: 'quantity'})
   quantity: number;
 
+  @Column({default: ''})
+  image: string
+
   @ManyToMany(() => CartEntity, (cart) => cart.products)
   cart: CartEntity[];
 
