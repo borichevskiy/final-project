@@ -11,7 +11,7 @@ export class OrdersRepo extends Repository<OrdersEntity> {
     super(repository.target, repository.manager, repository.queryRunner);
   }
 
-  async getOrderById(id : number) {
+  async getOrderById(id : string) {
     return await this.findOne({ where: { id }, relations: ["user", "products"] });
   }
 

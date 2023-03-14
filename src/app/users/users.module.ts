@@ -16,23 +16,26 @@ import { CategoryEntity } from "../categories/entities/category.entity";
 import { ProductsEntity } from "../products/entities/products.entity";
 import { RatingEntity } from "../rating/entities/rating.entity";
 import { SecurityModule } from '../security/security.module';
+import { RolesRepo } from '../roles/repos/roles.repo';
 
 
 @Module({
-  exports:[UsersService, UsersRepo],
-  providers: [UsersService, UsersRepo],
+  providers: [UsersService, UsersRepo, RolesRepo],
   controllers: [UsersController],
+  exports: [
+    UsersRepo, UsersService
+  ],
   imports: [
     TypeOrmModule.forFeature([
-      UserEntity, 
+      UserEntity,
       UserInfoEntity,
-      CartEntity, 
-      BrandEntity, 
-      UserRoleEntity, 
-      OrdersEntity, 
-      UserInfoEntity, 
-      CategoryEntity, 
-      ProductsEntity, 
+      CartEntity,
+      BrandEntity,
+      UserRoleEntity,
+      OrdersEntity,
+      UserInfoEntity,
+      CategoryEntity,
+      ProductsEntity,
       RatingEntity
     ]),
     SecurityModule

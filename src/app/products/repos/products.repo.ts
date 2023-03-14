@@ -10,7 +10,7 @@ export class ProductsRepo extends Repository<ProductsEntity> {
     super(repository.target, repository.manager, repository.queryRunner);
   }
 
-  async getProductById(id: number) {
+  async getProductById(id: string) {
     return await this.findOne({
       where: { id },
       relations: ['cart', 'orders', 'category', 'brand', 'ratings'],

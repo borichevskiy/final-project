@@ -6,14 +6,16 @@ import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { OrdersEntity } from "./entities/orders.entity";
 import { OrdersRepo } from "./repos/orders.repo";
+import { UsersRepo } from '../users/repos/users.repo';
+import { UserEntity } from '../users/entities/users.entity';
 
 
 @Module({
-  providers: [OrdersService, OrdersRepo],
+  providers: [OrdersService, OrdersRepo, UsersRepo],
   controllers: [OrdersController],
   imports: [
     TypeOrmModule.forFeature([
-      OrdersEntity
+      OrdersEntity, UserEntity
     ])
   ]
 })

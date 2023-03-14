@@ -12,11 +12,10 @@ import { OrdersEntity } from "../../orders/entities/orders.entity";
 import { CategoryEntity } from "../../categories/entities/category.entity";
 import { BrandEntity } from "../../brand/entities/brand.entity";
 import { RatingEntity } from "../../rating/entities/rating.entity";
+import { UUIDEntity } from '../../../shared/entities/uuid.entity';
 
 @Entity('products')
-export class ProductsEntity {
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
+export class ProductsEntity extends UUIDEntity{
 
   @Column({name: 'name'})
   name: string;

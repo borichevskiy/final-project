@@ -19,4 +19,8 @@ export class RolesRepo extends Repository<UserRoleEntity> {
   async getAllRoles() {
     return await this.find();
   }
+
+  async getRoleByName(name: string) {
+    return await this.findOne({where: {name}});
+  }
 }

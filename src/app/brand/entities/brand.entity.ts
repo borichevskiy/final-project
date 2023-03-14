@@ -1,11 +1,10 @@
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ProductsEntity } from "../../products/entities/products.entity";
 import { CategoryEntity } from "../../categories/entities/category.entity";
+import { IDEntity } from '../../../shared/entities/id.entity';
 
 @Entity('brands')
-export class BrandEntity{
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
+export class BrandEntity extends IDEntity{
 
   @Column({name: 'name'})
   name: string;
@@ -16,8 +15,5 @@ export class BrandEntity{
   @ManyToMany(() => CategoryEntity, (category) => category.brands)
   @JoinTable()
   categories: CategoryEntity[];
-
-
-
 
  }

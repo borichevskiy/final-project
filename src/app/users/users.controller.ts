@@ -5,6 +5,7 @@ import { JwtPermissionsGuard } from '../security/guards/jwt-permissions.guard';
 import { UserPermissions } from '../roles/enums/user-permissions.enum';
 import { RequirePermissions } from '../security/decorators/permissions.decorator';
 import { I18n, I18nContext } from "nestjs-i18n";
+import { JwtAuthGuard } from '../security/guards/jwt-auth.guard';
 
 @Controller('users') 
 // @UseGuards(JwtPermissionsGuard)
@@ -18,7 +19,8 @@ export class UsersController {
 
 
   @Get()
-  @RequirePermissions(UserPermissions.GetUsers)
+  // @RequirePermissions(UserPermissions.GetUsers)
+  @UseGuards(JwtAuthGuard)
   async getUsers() {
     return await this.usersService.getUsers();
   }

@@ -16,8 +16,13 @@ export class CategoriesService {
 
   async createCategory(dto: CreateCategoryDto) {
     const newCategory = this.categoryRepository.create({
-      ...dto,
+      ...dto, created: new Date()
     });
     return await this.categoryRepository.save(newCategory);
+  }
+
+
+  public updateCategory(updateId: number, dto: CreateCategoryDto) {
+    return this.categoryRepository.update(updateId, { ...dto, updated: new Date()});
   }
 }

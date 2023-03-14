@@ -2,12 +2,10 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn
 import { BrandEntity } from "../../brand/entities/brand.entity";
 import { ProductsEntity } from "../../products/entities/products.entity";
 import { UserEntity } from "../../users/entities/users.entity";
+import { IDEntity } from '../../../shared/entities/id.entity';
 
 @Entity('ratings')
-export class RatingEntity {
-
-  @PrimaryGeneratedColumn({type: "bigint"})
-  id: number;
+export class RatingEntity extends IDEntity{
 
   @Column({name: 'rate'})
   rate: number;

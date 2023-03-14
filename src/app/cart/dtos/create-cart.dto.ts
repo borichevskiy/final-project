@@ -1,3 +1,6 @@
+import { ProductsEntity } from '../../products/entities/products.entity';
+
 export class CreateCartDto {
-  readonly totalPrice: number;
+  readonly userId: string;
+  readonly products: ProductsEntity[];
 }

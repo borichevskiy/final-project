@@ -7,7 +7,7 @@ import { CreateProductDto } from './dtos/create-product.dto';
 export class ProductsService {
   constructor(private readonly productsRepository: ProductsRepo) {}
 
-  async getProductById(id: number) {
+  async getProductById(id: string) {
     return await this.productsRepository.getProductById(id);
   }
 
@@ -23,7 +23,7 @@ export class ProductsService {
   }
 
   async updateProduct(updateId: number, dto: CreateProductDto) {
-    return await this.productsRepository.update(updateId, {...dto});
+    return await this.productsRepository.update(updateId, {...dto, updated: new Date()});
   }
 
   async delete(id: number) {

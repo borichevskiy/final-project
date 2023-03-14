@@ -11,7 +11,7 @@ export class CartRepo extends Repository<CartEntity> {
     super(repository.target, repository.manager, repository.queryRunner);
   }
 
-  async getCartById(id : number) {
+  async getCartById(id : string) {
     return await this.findOne({ where: { id }, relations: ["products"] });
   }
 
