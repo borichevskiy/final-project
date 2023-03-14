@@ -3,7 +3,7 @@ import { Get } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common';
 import { HttpCode } from '@nestjs/common';
 import { Controller, Post } from '@nestjs/common';
-import { JwtAuthGuard } from '../security/guards/jwt-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login.dto';
 import { RegistrationDto } from './dtos/registration.dto';
